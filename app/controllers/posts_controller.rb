@@ -68,7 +68,9 @@ class PostsController < ApplicationController
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def post_params
-      params.require(:post).permit(:name)
+    def post_params  
+      # we have access to :content b/c of their relationship
+      # tag_ids: [] allows for multiple to come through
+      params.require(:post).permit(:name, :content, tag_ids: [])
     end
 end
